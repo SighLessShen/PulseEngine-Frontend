@@ -1,22 +1,23 @@
 import React from 'react';
 import { Spinner, Flex, Text, Grid, Box } from '@chakra-ui/core';
 
+
 const TeamRow = (props) => {
     const teamName = props.teamName;
     const teamData = props.teamData;
 
     return (
         <React.Fragment>
-        <Box w='100%' h='10' borderWidth='1px' borderColor='darkPop'>
+        <Box w='100%' h='20' borderWidth='1px' borderColor='darkPop'>
             <Flex w='100%' h='100%' justify='center' align='center'>
                 <Text mx='1em' color='white'>
                     {teamName}
                 </Text>
             </Flex>
         </Box>
-        {Object.keys(teamData).map((service) => {
+        {Object.keys(teamData).sort().map((service) => {
             return (
-                <Box key={service} w='100%' h='10' borderWidth='1px' borderColor='darkPop'>
+                <Box key={service} w='100%' h='20' borderWidth='1px' borderColor='darkPop'>
                     <Flex w='100%' h='100%' justify='center' align='center'>
                         <Text color='white'>
                             {teamData[service].checksUp + ' / ' + teamData[service].totalChecks}
@@ -49,9 +50,9 @@ const ScoreTotal = (props) => {
     }else{
         return (
             <Grid templateColumns={'repeat(' + (Object.keys(scores[Object.keys(scores)[0]]).length + 1) + ', 1fr)'}>
-                <Box w='100%' h='10' />
-                {Object.keys(scores[Object.keys(scores)[0]]).map((service) => {
-                    return (<Box key={service} w='100%' h='10' borderWidth='1px' borderColor='darkPop'>
+                <Box w='100%' h='20' />
+                {Object.keys(scores[Object.keys(scores)[0]]).sort().map((service) => {
+                    return (<Box key={service} w='100%' h='20' borderWidth='1px' borderColor='darkPop'>
                         <Flex w='100%' h='100%' justify='center' align='center'>
                             <Text color='white'>
                                 {service}
@@ -60,7 +61,7 @@ const ScoreTotal = (props) => {
                     </Box>
                     );
                 })}
-                {Object.keys(scores).map((teamName) => {
+                {Object.keys(scores).sort().map((teamName) => {
                     const teamData = scores[teamName];
                     return(
                         <TeamRow key={teamName} teamName={teamName} teamData={teamData} />
